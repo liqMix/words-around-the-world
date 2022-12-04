@@ -1,6 +1,33 @@
 # words-around-the-world
 It's like a word game but everyone plays at the same time
 
+## install
+### create venv
+```
+python -m venv venv
+```
+
+### activat ur veenv
+wimdows
+```
+venv/Scripts/activate.bat
+```
+
+### run serber
+```
+python manage.py runserver
+```
+
+### add ur user (for now)
+```
+python manage.py createsuperuser
+```
+
+### clic loggin on game pag
+```
+http://127.0.0.1:8000/game/
+```
+
 ## todo
 - render board
   - multipliers
