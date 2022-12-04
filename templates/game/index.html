@@ -1,0 +1,60 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'game/style.css' %}">
+{% csrf_token %}
+<script type="text/javascript">     window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
+<div class="game">
+    <div class="game_header">
+        <h1 class="game_header_title">Words Around the World</h1>
+        <h2 class="game_header_user">
+            {% if not user.is_anonymous %}
+                <a href="accounts/logout">{{ user.username }}</a>
+            {% else %}
+                <a href="accounts/login">Login</a>
+            {% endif %}
+        </h2>
+    </div>
+    <h3 class="game_header_title">Board #{{ board.id }}</h3>
+    {% if cells %}
+        <table class="game_grid">
+            {% for row in cells %}
+                <tr class="game_grid_row">
+                    {% for cell in row %}
+                        {% if cell.symbol %}
+                            <td class="game_tile" id="{{ cell.id }}">
+                                <p class="game_tile_symbol">{{ cell.symbol.symbol }}</p>
+                                <p class="game_tile_value">{{ cell.symbol.value }}</p>
+                            </td>
+                        {% else %}
+                            <td class="game_grid_cell" id="{{ cell.id }}"
+                                ondrop="drop(event, {{ cell.x }}, {{ cell.y }})" ondragover="allowDrop(event)">
+                            </td>
+                        {% endif %}
+
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        {% if not user.is_anonymous %}
+            <div class="game_user_tiles" id="game_user_tiles" ondrop="drop(event)" ondragover="allowDrop(event)">
+                {% for l in letters %}
+                    <div draggable="true" class="game_tile" id="{{ l.id }}" ondragstart="drag(event, {{ l.id }})">
+                        <p class="game_tile_symbol">{{ l.letter.symbol }}</p>
+                        <p class="game_tile_value">{{ l.letter.value }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="game_submit">
+                <button id="game_submit_button" class="game_submit_button" disabled="{{ True }}"
+                        onclick="submitTiles()">Submit
+                </button>
+            </div>
+            <div id="error-box"></div>
+        {% endif %}
+    {% else %}
+        <p>Game not found</p>
+    {% endif %}
+</div>
+
+{% block footer_js %}
+    <script type="text/javascript" src="{% static 'game/tile_placement.js' %}"></script>
+{% endblock %}

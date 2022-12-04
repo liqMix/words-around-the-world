@@ -1,0 +1,112 @@
+body {
+    --primary: #1d2d34;
+    --secondary: antiquewhite;
+    --tile-bg: #dac585;
+    background-color: var(--primary);
+    color: var(--secondary);
+    margin: 2rem 0 2rem 0;
+}
+
+a {
+    color: var(--secondary);
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game_header {
+    display: flex;
+    align-items: flex-end;
+}
+
+.game_header_title {
+    margin: 0;
+}
+
+.game_header_user {
+    position: absolute;
+    right: 1rem;
+}
+
+.game_grid {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 2rem 2rem 2rem;
+}
+
+.game_grid_row {
+    display: flex;
+}
+
+.game_grid_tile {
+    background-color: var(--tile-bg);
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.game_grid_cell {
+    background-color: var(--secondary);
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+[draggable=true] {
+    cursor: move;
+}
+
+.game_tile {
+    background-color: var(--tile-bg);
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.game_tile:hover {
+    scale: 115%;
+}
+
+.game_tile_symbol {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+}
+
+.game_tile_value {
+    margin-top: -0.25rem;
+    margin-left: 1.5rem;
+    font-size: 0.7rem;
+}
+
+.game_user_tiles {
+    width: 20rem;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+}
+
+.game_user_letters_table {
+
+}
